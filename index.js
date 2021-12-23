@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-expressions */
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
@@ -18,14 +19,15 @@ const strangerThingsService = new StrangerThingsService(
 app.use(cors());
 
 const { PORT } = process.env;
-
-const hereIsTheUpsideDown = false;
+const { UPSIDEDOWN_MODE } = process.env;
+const hereIsTheUpsideDown = UPSIDEDOWN_MODE === 'true' ? UPSIDEDOWN_MODE : false;
 
 app.get('/', (req, res) => {
   const characters = strangerThingsService.search(
     req.query,
     hereIsTheUpsideDown,
   );
+  console.log(hereIsTheUpsideDown);
 
   res.status(200).json(characters);
 });
