@@ -22,4 +22,5 @@ class StrangerThingsService {
   }
 }
 
+
 module.exports = StrangerThingsService;
